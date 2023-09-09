@@ -85,6 +85,14 @@ class ClickhouseComponent extends Component {
     return stream;
   }
 
+  get client() {
+    if (!this.client_) {
+      throw new ClickhouseError(ClickhouseErrorCode.ERR_COMPONENT_NOT_CONNECTED, 'ERR_COMPONENT_NOT_CONNECTED');
+    }
+
+    return this.client_;
+  }
+
   get version() {
     return pkg.version;
   }

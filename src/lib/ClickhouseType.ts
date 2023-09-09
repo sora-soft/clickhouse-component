@@ -1,3 +1,5 @@
+import {ClickHouseClient} from '@clickhouse/client';
+
 export enum ClickhouseColumnType {
   UInt8 = 'UInt8',
   UInt16 = 'UInt16',
@@ -30,4 +32,9 @@ export interface IClickhouseSelectResponse {
   data: Record<string, string>[];
   rows: number;
   statistics: {elapsed: number; rows_read: number; bytes_read: number};
+}
+
+export interface IClickhouseMigration {
+  up(client: ClickHouseClient): Promise<void>;
+  down(client: ClickHouseClient): Promise<void>;
 }
